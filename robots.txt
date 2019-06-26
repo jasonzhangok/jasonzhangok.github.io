@@ -10,6 +10,6 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.jeffzhang.cn/sitemap.xml
-Sitemap: http://www.jeffzhang.cn/baidusitemap.xml
+Sitemap: http://www.zhangjs.me/sitemap.xml
+Sitemap: http://www.zhangjs.me/baidusitemap.xml
 
