@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhangjs.me/"/>
-  <updated>2019-06-26T00:30:42.563Z</updated>
+  <updated>2019-08-06T02:04:09.000Z</updated>
   <id>http://www.zhangjs.me/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自然底数e</title>
+    <link href="http://www.zhangjs.me/natural-logarithm/"/>
+    <id>http://www.zhangjs.me/natural-logarithm/</id>
+    <published>2019-08-05T16:00:00.000Z</published>
+    <updated>2019-08-06T02:04:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>e是一个数学常数。</p>]]></content>
+    
+    <summary type="html">
+    
+      自然底数e是什么？
+    
+    </summary>
+    
+      <category term="心得笔记" scheme="http://www.zhangjs.me/categories/%E5%BF%83%E5%BE%97%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数学" scheme="http://www.zhangjs.me/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello world!</title>
