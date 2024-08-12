@@ -19,18 +19,22 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.zhangjs.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="第一章神经网络如何工作。">
+    <meta name="description" content="The learning note of Book &quot;Dive into Deep Learning&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="人工神经网络学习笔记——神经网络如何工作">
 <meta property="og:url" content="http://www.zhangjs.me/ann_notes_1/index.html">
 <meta property="og:site_name" content="Jason&#39;s Blog">
-<meta property="og:description" content="第一章神经网络如何工作。">
+<meta property="og:description" content="The learning note of Book &quot;Dive into Deep Learning&quot;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.zhangjs.me/image/ann_notes_1/AnacondaInstallation.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/ann_notes_1/environment_creation.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/ann_notes_1/environment_activation.png">
 <meta property="article:published_time" content="2024-08-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-11T04:25:09.344Z">
+<meta property="article:modified_time" content="2024-08-12T04:05:31.497Z">
 <meta property="article:author" content="Jiasheng Zhang">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhangjs.me/image/ann_notes_1/AnacondaInstallation.png">
 
 
 <link rel="canonical" href="http://www.zhangjs.me/ann_notes_1/">
@@ -113,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Prerequisites"><span class="nav-number">1.</span> <span class="nav-text">1 Prerequisites</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation-of-environment"><span class="nav-number">1.1.</span> <span class="nav-text">Installation of environment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +182,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="人工神经网络学习笔记——神经网络如何工作 | Jason's Blog">
-      <meta itemprop="description" content="第一章神经网络如何工作。">
+      <meta itemprop="description" content="The learning note of Book "Dive into Deep Learning"">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -192,9 +196,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-08-11 00:00:00 / Modified: 12:25:09" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
+      <time title="Created: 2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-12 12:05:31" itemprop="dateModified" datetime="2024-08-12T12:05:31+08:00">2024-08-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,7 +219,7 @@
   
 </div>
 
-            <div class="post-description">第一章神经网络如何工作。</div>
+            <div class="post-description">The learning note of Book "Dive into Deep Learning"</div>
         </div>
       </header>
 
@@ -217,7 +227,8 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>参考书：以《Python神经网络编程》、《Dive into Deep Learning》为资料，学习基本的人工神经网络基础知识。</p>
-<h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2>
+<h1 id="1-Prerequisites"><a href="#1-Prerequisites" class="headerlink" title="1 Prerequisites"></a>1 Prerequisites</h1><h2 id="Installation-of-environment"><a href="#Installation-of-environment" class="headerlink" title="Installation of environment"></a>Installation of environment</h2><p>1 Installation of Anaconda<br><img src="../image/ann_notes_1/AnacondaInstallation.png" alt="e_growth" width="500" /><br>2 Create an environment and activate environment<br><img src="../image/ann_notes_1/environment_creation.png" alt="e_growth" width="500" /><br><img src="../image/ann_notes_1/environment_activation.png" alt="e_growth" width="500" /></p>
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1>
     </div>
 
     
