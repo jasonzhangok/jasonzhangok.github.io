@@ -19,28 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.zhangjs.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="The basic concept of Deepsort and the relevant code about Deepsort.">
+    <meta name="description" content="The basic concept of DeepSORT and the relevant code about DeepSORT.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deepsort">
+<meta property="og:title" content="DeepSORT">
 <meta property="og:url" content="http://www.zhangjs.me/Deepsort/index.html">
 <meta property="og:site_name" content="Jason&#39;s Blog">
-<meta property="og:description" content="The basic concept of Deepsort and the relevant code about Deepsort.">
+<meta property="og:description" content="The basic concept of DeepSORT and the relevant code about DeepSORT.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/SORT.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/DeepSORT.png">
 <meta property="article:published_time" content="2024-08-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-12T09:02:18.427Z">
+<meta property="article:modified_time" content="2024-08-11T16:00:00.000Z">
 <meta property="article:author" content="Jiasheng Zhang">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhangjs.me/image/Deepsort/SORT.png">
 
 
 <link rel="canonical" href="http://www.zhangjs.me/Deepsort/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://www.zhangjs.me/Deepsort/","path":"Deepsort/","title":"Deepsort"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://www.zhangjs.me/Deepsort/","path":"Deepsort/","title":"DeepSORT"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Deepsort | Jason's Blog</title>
+<title>DeepSORT | Jason's Blog</title>
   
 
 
@@ -113,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SORT"><span class="nav-number">1.</span> <span class="nav-text">SORT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deepsort"><span class="nav-number">2.</span> <span class="nav-text">Deepsort</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Important-code"><span class="nav-number">3.</span> <span class="nav-text">Important code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Traditional-SORT"><span class="nav-number">1.</span> <span class="nav-text">Traditional SORT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DeepSORT"><span class="nav-number">2.</span> <span class="nav-text">DeepSORT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Important-code"><span class="nav-number">3.</span> <span class="nav-text">Important code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -177,12 +180,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Deepsort | Jason's Blog">
-      <meta itemprop="description" content="The basic concept of Deepsort and the relevant code about Deepsort.">
+      <meta itemprop="name" content="DeepSORT | Jason's Blog">
+      <meta itemprop="description" content="The basic concept of DeepSORT and the relevant code about DeepSORT.">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Deepsort
+          DeepSORT
         </h1>
 
         <div class="post-meta-container">
@@ -192,9 +195,8 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-08-12 00:00:00 / Modified: 17:02:18" itemprop="dateCreated datePublished" datetime="2024-08-12T00:00:00+08:00">2024-08-12</time>
+      <time title="Created: 2024-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-12T00:00:00+08:00">2024-08-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,15 +211,44 @@
   
 </div>
 
-            <div class="post-description">The basic concept of Deepsort and the relevant code about Deepsort.</div>
+            <div class="post-description">The basic concept of DeepSORT and the relevant code about DeepSORT.</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>&emsp;Deepsort is the short for Deep learning based SORT. Deepsort is a target detection algorithm that based on computer vision. It combines deep learning with traditional target detection SORT(Simple Online and Realtime Tracking).<br>&emsp;Deepsort detect the objects in every frame of the video via object detector(YOLO, Faster R-CNN and so on). And use multi-feature fusion to respresent and describe objects. Then use SORT algorithm to follow the objects. Based on SORT, Deepsort intorduces Re-Identification(Re-ID) model to solve the problem of determining the ID of the detected objects. Re-Id model determine the unique ID of object by calculating the similarity in the subsequent few frame.<br>&emsp;The advantage of Deepsort is that it has high accuracy and is robust. It can also fit the circumstance when the object are shaded or shape changed. Deepsort has widely been used in the detection and following of people, cars and Intelligent video surveillance。</p>
-<h1 id="SORT"><a href="#SORT" class="headerlink" title="SORT"></a>SORT</h1><h1 id="Deepsort"><a href="#Deepsort" class="headerlink" title="Deepsort"></a>Deepsort</h1><h1 id="Important-code"><a href="#Important-code" class="headerlink" title="Important code"></a>Important code</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>陈子逊 从零开始学习deepsort目标追踪算法—-原理和代码详解(<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45303602/article/details/132721845">https://blog.csdn.net/weixin_45303602/article/details/132721845</a>)</p>
+    <div class="post-body" itemprop="articleBody"><p>&emsp;DeepSORT is the short for Deep learning based SORT. DeepSORT is a target detection algorithm that based on computer vision. It combines deep learning with traditional target detection SORT(Simple Online and Realtime Tracking).<br>&emsp;DeepSORT detect the objects in every frame of the video via object detector(YOLO, Faster R-CNN and so on). And use multi-feature fusion to respresent and describe objects. Then use SORT algorithm to follow the objects. Based on SORT, DeepSORT intorduces Re-Identification(Re-ID) model to solve the problem of determining the ID of the detected objects. Re-Id model determine the unique ID of object by calculating the similarity in the subsequent few frame.<br>&emsp;The advantage of DeepSORT is that it has high accuracy and is robust. It can also fit the circumstance when the object are shaded or shape changed. DeepSORT has widely been used in the detection and following of people, cars and Intelligent video surveillance。</p>
+<h1 id="Traditional-SORT"><a href="#Traditional-SORT" class="headerlink" title="Traditional SORT"></a>Traditional SORT</h1><img src="../image/Deepsort/SORT.png" alt="SORT" width="800" >
+
+<p style="text-align: center;"><font color=Blue>Workflow of SORT</font></p>
+&emsp;The core of SORT is Kalman Filter and Hungarian algorithm.
+Kalman Filter predicts objects' next time positions using current position  and moving characteristic and Hungarian algorithm match the last time objects with current Kalman filter prediciton to follow all the objects in the image.
+
+<p>&emsp;SORT works like follows: When the algorithm starts, there are no detections and prediction on the image.</p>
+<ol>
+<li>We first ues object detector to detect the objects on the image.</li>
+<li>We construct tracks based on the objects we detected on the first frame.</li>
+<li>Based on the tracks, we use Kalman filter to predict the position of objects on the next frame.</li>
+<li>On the next frame, we use object detector to detect objects and implement IOU match for last frame prediction and current frame detection. And calculate cost matrix based on the result of IOU match result.(Cost Matrix &#x3D; 1 - IOU)</li>
+<li>We take Cost Matrix as the input of the Hungarian algorithm and we will get linear matching result. Since there are many objects on a frame, we can divide them into 3 groups according to their trait: Unmatched tracks, Unmatched detections, Matched tracks. Unmatched tracks means that there are prediction on the frame but no corresponding detection. Unmatched detections means that there are detection but no corresponding prediction. And matched tracks are the easiest one, it means that we match detection and prediction successfully.<br>&emsp;For my own understanding, I think that Unmatched tracks means that the object has moved out of image in the next frame, and unmatched detection means that there are new object appeared in the image. For tracks that are unmatched, we deleted it directly. For unmatched detections, we can create new tracks that represent the new detection. And for the matched tracks, we update it’s position from the detection and add the new position to it’s track.<br>We repeat the 3,4,5 steps until the input video is over.</li>
+</ol>
+<h1 id="DeepSORT"><a href="#DeepSORT" class="headerlink" title="DeepSORT"></a>DeepSORT</h1><img src="../image/Deepsort/DeepSORT.png" alt="DeepSORT" width="800" >
+<p style="text-align: center;"><font color=Blue>Workflow of DeepSORT</font></p>
+&emsp;We can see some drawbacks of SORT, for example, if object is shaded, it will lose it's track and it's ID. DeepSORT introduce Matching cascade and New track confirm compared to SORT. Tracks in DeepSORT are grouped into confirmed track and unconfirmed track. New created Tracks are unconfirmed. Unconfirmed track have to match detections centain continuous times(3 by default, we call it min_age) can it be a confirmed track. And confirmed track will tranform to unconfirmed if it unmatch detection over certain continuous times(30 by default, we call it max_age).
+
+<p>&emsp;DeepSORT works like follows: When the algorithm starts, there are no detections and prediction on the image.</p>
+<ol>
+<li>We first ues object detector to detect the objects on the image.</li>
+<li>We construct tracks based on the objects we detected on the first frame. These tracks are unconfirmed.</li>
+<li>Based on the tracks, we use Kalman filter to predict the position of objects on the next frame.</li>
+<li>On the next frame, we use object detector to detect objects and implement IOU match for last frame prediction and current frame detection. And calculate cost matrix based on the result of IOU match result.(Cost Matrix &#x3D; 1 - IOU) </li>
+<li>We take Cost Matrix as the input of the Hungarian algorithm and we will get linear matching result. And just as SORT, we divide them into 3 groups: Unmatched tracks, unmatched detections and matched tracks. For unmatched tracks, we delete it directly.(This track is unconfirmed, so we can delete it. But if the track is confirmed, we can only delete it if its unmatching time exceed max_age). For unmatched detections, we create a new track(definitely unconfirmed). For matched tracks, we update it’s position from the detection and add the new position to it’s track. At the same time,we add its matching time by 1 and if its matching time exceed min_age, we transform its state to confirmed.<br>We repeat step 3,4,5 until there exist confirmed track or the video ends.</li>
+<li>We use Kalman filter to predict the position of the confirmed tracks on the next frame. And we implement matching cascade using this prediction and the detection.</li>
+<li>Then we can get 3 possible result: Unmatched tracks, Unmatched detections, Matched tracks. For matched tracks, we update it’s position from the detection and add the new position to it’s track. For the other two results, we put them into IOU match just as unconfirmed tracks</li>
+<li>We repeat step 6,7 steps until the video ends.</li>
+</ol>
+<h1 id="Important-code"><a href="#Important-code" class="headerlink" title="Important code"></a>Important code</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>陈子逊 从零开始学习deepSORT目标追踪算法—-原理和代码详解(<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45303602/article/details/132721845">https://blog.csdn.net/weixin_45303602/article/details/132721845</a>)</p>
 
     </div>
 
