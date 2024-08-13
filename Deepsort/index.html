@@ -28,6 +28,15 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/SORT.png">
 <meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/DeepSORT.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/PytorchInstallation.jpg">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/YOLOV5catalog.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/YOLOV5Pycharm.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/PythonInterpreter.jpg">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/YOLOV5TrainingImage.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/YOLOV5TrainingLabel.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/Yamlcontent.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/YOLOV5parameters.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Deepsort/ChangedParameters.jpg">
 <meta property="article:published_time" content="2024-08-11T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-08-11T16:00:00.000Z">
 <meta property="article:author" content="Jiasheng Zhang">
@@ -248,7 +257,27 @@ Kalman Filter predicts objects' next time positions using current position  and 
 <li>Then we can get 3 possible result: Unmatched tracks, Unmatched detections, Matched tracks. For matched tracks, we update it’s position from the detection and add the new position to it’s track. For the other two results, we put them into IOU match just as unconfirmed tracks</li>
 <li>We repeat step 6,7 steps until the video ends.</li>
 </ol>
-<h1 id="Important-code"><a href="#Important-code" class="headerlink" title="Important code"></a>Important code</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>陈子逊 从零开始学习deepSORT目标追踪算法—-原理和代码详解(<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45303602/article/details/132721845">https://blog.csdn.net/weixin_45303602/article/details/132721845</a>)</p>
+<h1 id="Important-code"><a href="#Important-code" class="headerlink" title="Important code"></a>Important code</h1><ul>
+<li>Implementation of YOLOV5<ol>
+<li>Environment configuration<br>  Open Anaconda terminal and create a new environment: yolov5. After creation, we activate the environment and download pytorch according to you computer(CPU or GPU, if GPU, choose suitable CUDA verison) from the Pytorch offical website.  <img src="../image/Deepsort/PytorchInstallation.jpg" alt="Pytorch" width="600" >
+  It will need approximately 10 minutes.</li>
+<li>Download code of YOLOV5<br>  We firstly download code of YOLOV5 from weisite:<a target="_blank" rel="noopener" href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a>. We unrar it and we get yolov5-master folder:   <img src="../image/Deepsort/YOLOV5catalog.png" alt="yolov5catelog" width="600" >
+  We open the folder in Pycharm.
+  <img src="../image/Deepsort/YOLOV5Pycharm.png" alt="yolov5Pycharm" width="800" >
+   And we use new created yolov5 environment as project python interpreter.
+  <img src="../image/Deepsort/PythonInterpreter.jpg" alt="Pythoninterpreter" width="600" ></li>
+<li>Get training data<br>  My training is downloaded from reference[1], <img src="../image/Deepsort/YOLOV5TrainingImage.png" alt="SORT" width="600" >but it’s label files are in the form of XML. But what YOLOV5 want is TXT file. So we need to converse the label file type. The conversion code is in the GitHub site:<br>  and we will get:  <img src="../image/Deepsort/YOLOV5TrainingLabel.png" alt="Traininglabel" width="800" >
+  After we get the training images and correct training labels, we need to new a folder in YOLOv5-master and name it anything you like(Here, I name it yolo_A). We put the training images and correct training labels in it. And we need to new a YAML file to tell the YOVOV5 trainer where is our training data. It contents are as follows:
+   <img src="../image/Deepsort/Yamlcontent.png" alt="Yamlcontent" width="800" ></li>
+<li>Training model<br>  We need to pay our attention to the parameters in the YOLOV5, there are many parameters in the YOLOV5 and we should adjust the parameters to suit our dataset best.  <img src="../image/Deepsort/YOLOV5parameters.png" alt="OriginalPara" width="800" >
+  The above image is the original parameters of YOLOV5, we should at least change "--data" to the location where our training data lies. And we can adjust other parameters according to requirements.
+  <img src="../image/Deepsort/ChangedParameters.jpg" alt="ChangedPara" width="800" >
+  After we adjust the parameters in model, we can click "run" botton and train the model, it will cost a lot of time.
+  And there are another way to train the model, we can open Anacnoda terminal and activate our yolov5 environment and get into yolov5-master folder and run the command: "python train.py --weights weights/yolov5s.pt  --cfg models/yolov5s.yaml  --data data/"yolo_A/A.yaml", --epoch 100 --batch-size 8 --img 640"</li>
+</ol>
+</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1]陈子逊 从零开始学习deepSORT目标追踪算法—-原理和代码详解(<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45303602/article/details/132721845">https://blog.csdn.net/weixin_45303602/article/details/132721845</a>)<br>[2]缔宇diyu Yolov5训练自己的数据集（详细完整版）（<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45945548/article/details/121701492%EF%BC%89">https://blog.csdn.net/qq_45945548/article/details/121701492）</a></p>
 
     </div>
 
