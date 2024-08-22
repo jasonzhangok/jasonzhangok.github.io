@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/SiameseArch.png">
 <meta property="article:published_time" content="2024-08-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-22T13:05:54.005Z">
+<meta property="article:modified_time" content="2024-08-22T13:08:50.055Z">
 <meta property="article:author" content="Jiasheng Zhang">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-08-22 00:00:00 / Modified: 21:05:54" itemprop="dateCreated datePublished" datetime="2024-08-22T00:00:00+08:00">2024-08-22</time>
+      <time title="Created: 2024-08-22 00:00:00 / Modified: 21:08:50" itemprop="dateCreated datePublished" datetime="2024-08-22T00:00:00+08:00">2024-08-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -218,6 +218,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>&emsp;There are some papers about Face recognition and I will discuss the main idea of them.<br>&emsp;1.”Learning a similarity metric discriminatively, with application to face verification”<br>The paper presents a method for training a similarity metric from data. The idea is to learn a function that maps input patterns into a target space. <font color=Red>The learning process minimizes a discriminative loss function that drives the similarity metric to be small for pairs of faces from the same person, and large for pairs from different persons</font>(The basic idea of metric learning) And it use siamese architecture meaning that the learned parameter is used to process both inputs. The workflow of the algorithm are as follows:<br><img src="../image/FaceRecognition/SiameseArch.png" alt="SiameseArch" width="600" ><br>And it adds a margin to avoid the points of the same person are more closed to the other people’s points.<br>&emsp;2.”Deep Learning Face Representation by Joint Identification-Verification”<br>This paper introduces a novel idea: The Deep IDentification-verification features (DeepID2). Identification is to classify an input image into a large number of seen identity, while verification is to classify a pair of images as belonging to the same identity or not. In the training process, the identification supervisory signal tend to pull apart DeepID2 of different identities since they have to be classified into different classes while the vertification supervisory signal tend to pull togather DeepID2 of same identity. The two supervisory signals emphasize different aspects and we should combine them to construct a powerful face recognition algorithm that can do identification and verfificaiton together.<br>&emsp;3.”FaceNet: A Unified Embedding for Face Recognition and Clustering”<br>This paper uses the similar approach as the avove two papers but what is new is that it train the CNN by triple images and it only use 128-dimension target space.(More later)<br>&emsp;4.”Deep Face Recognition”<br>This paper proposes a method to assemble large scale of dataset and use Softmax to accelerate the training of the network</p>
+<p>Reference:<br>[1] S. Chopra, R. Hadsell and Y. LeCun, “Learning a similarity metric discriminatively, with application to face verification,” 2005 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR’05), San Diego, CA, USA, 2005, pp. 539-546 vol. 1, doi: 10.1109&#x2F;CVPR.2005.202.<br>[2] Y. Sun, X. Wang, and X. Tang. Deep learning face representation by joint identification-verification. CoRR, abs&#x2F;1406.4773, 2014.<br>[3] F. Schroff, D. Kalenichenko, and J. Philbin. Facenet: A unified embedding for face recognition and clustering. In Proc. CVPR, 2015.<br>[4] O. M. Parkhi, A. Vedaldi, and A. Zisserman. Deep face recognition. In BMVC, 2015 </p>
 
     </div>
 
