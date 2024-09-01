@@ -21,7 +21,7 @@
 
     <meta name="description" content="Some papers concerning Face Recognition">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FaceRecognition">
+<meta property="og:title" content="Jason&#39;s Blog">
 <meta property="og:url" content="http://www.zhangjs.me/FaceRecognition/index.html">
 <meta property="og:site_name" content="Jason&#39;s Blog">
 <meta property="og:description" content="Some papers concerning Face Recognition">
@@ -30,8 +30,15 @@
 <meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/DeepsortNet.png">
 <meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Code1.png">
 <meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Code2.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Loaddata.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Transform.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Transform2.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/DataConstruce.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Device1.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Device_net.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/FaceRecognition/Device_tensor.png">
 <meta property="article:published_time" content="2024-08-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-29T09:56:01.224Z">
+<meta property="article:modified_time" content="2024-09-01T12:31:28.576Z">
 <meta property="article:author" content="Jiasheng Zhang">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
@@ -42,10 +49,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://www.zhangjs.me/FaceRecognition/","path":"FaceRecognition/","title":"FaceRecognition"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://www.zhangjs.me/FaceRecognition/","path":"FaceRecognition/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>FaceRecognition | Jason's Blog</title>
+<title> | Jason's Blog</title>
   
 
 
@@ -181,12 +188,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="FaceRecognition | Jason's Blog">
+      <meta itemprop="name" content=" | Jason's Blog">
       <meta itemprop="description" content="Some papers concerning Face Recognition">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          FaceRecognition
+          
         </h1>
 
         <div class="post-meta-container">
@@ -204,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-08-29 17:56:01" itemprop="dateModified" datetime="2024-08-29T17:56:01+08:00">2024-08-29</time>
+      <time title="Modified: 2024-09-01 20:31:28" itemprop="dateModified" datetime="2024-09-01T20:31:28+08:00">2024-09-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -229,8 +236,10 @@
     <div class="post-body" itemprop="articleBody"><p>&emsp;There are some papers about Face recognition and I will discuss the main idea of them.<br>&emsp;1.”Learning a similarity metric discriminatively, with application to face verification”<br>The paper presents a method for training a similarity metric from data. The idea is to learn a function that maps input patterns into a target space. <font color=Red>The learning process minimizes a discriminative loss function that drives the similarity metric to be small for pairs of faces from the same person, and large for pairs from different persons</font>(The basic idea of metric learning) And it use siamese architecture meaning that the learned parameter is used to process both inputs. The workflow of the algorithm are as follows:<br><img src="../image/FaceRecognition/SiameseArch.png" alt="SiameseArch" width="600" ><br>And it adds a margin to avoid the points of the same person are more closed to the other people’s points.<br>&emsp;2.”Deep Learning Face Representation by Joint Identification-Verification”<br>This paper introduces a novel idea: The Deep IDentification-verification features (DeepID2). Identification is to classify an input image into a large number of seen identity, while verification is to classify a pair of images as belonging to the same identity or not. In the training process, the identification supervisory signal tend to pull apart DeepID2 of different identities since they have to be classified into different classes while the vertification supervisory signal tend to pull togather DeepID2 of same identity. The two supervisory signals emphasize different aspects and we should combine them to construct a powerful face recognition algorithm that can do identification and verfificaiton together.<br>&emsp;3.”FaceNet: A Unified Embedding for Face Recognition and Clustering”<br>This paper uses the similar approach as the avove two papers but what is new is that it train the CNN by triple images and it only use 128-dimension target space.(More later)<br>&emsp;4.”Deep Face Recognition”<br>This paper proposes a method to assemble large scale of dataset and use Softmax to accelerate the training of the network</p>
 <p>The implementation of my own network to map the 128*64 image to 128 dimension space:</p>
 <ol>
-<li>Construst my own network:<br>we do this by using the deepsort network<img src="../image/FaceRecognition/DeepsortNet.png" alt="Network" width="600" > We encountered some questions in the process of accomplish the net.<br>Firstly when we construct the net, when I use batchnormalization at the end of the network “nn.BatchNorm2d(128)”, there exists a problem “ValueError: expected 4D input (got 2D input)”. This is beacuse the value we get after the net is [1,128] not 4-dimensional we correct nn.BatchNorm2d(128) to nn.BatchNorm1D(128). But after that, there still exists an error: “ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])” That is because we only input the test data(x &#x3D; torch.randn([1,3,128,64])) by 1 batch size when we enlarge the batch size greater than 1 we will fix the problem.<br>Secondly, when I use cv2 to read image from file. The format of the image is narray and the size of it is 128 * 64 * 3 but what my network want is 3 * 128 * 64. So we need to transform the format of the image. We use cv2.split to get the 3 channels of the images and use torch.tensor() to create tensors we need to train the model.<img src="../image/FaceRecognition/Code1.png" alt="Code" width="600" > But we encounter another warming: “UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. “ We correct it by using numpy.array() as it suggested.<img src="../image/FaceRecognition/Code2.png" alt="Code" width="600" ></li>
+<li>Construst my own network:<br>we do this by using the deepsort network<img src="../image/FaceRecognition/DeepsortNet.png" alt="Network" width="600" > We encountered some questions in the process of accomplish the net.<br>Firstly when we construct the net, when I use batchnormalization at the end of the network “nn.BatchNorm2d(128)”, there exists a problem “ValueError: expected 4D input (got 2D input)”. This is beacuse the value we get after the net is [1,128] not 4-dimensional we correct nn.BatchNorm2d(128) to nn.BatchNorm1D(128). But after that, there still exists an error: “ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 128])” That is because we only input the test data(x &#x3D; torch.randn([1,3,128,64])) by 1 batch size when we enlarge the batch size greater than 1 we will fix the problem.</li>
 </ol>
+<p>Secondly, when I use cv2 to read image from file. The format of the image is narray and the size of it is 128 * 64 * 3 but what my network want is 3 * 128 * 64. So we need to transform the format of the image. We use cv2.split to get the 3 channels of the images and use torch.tensor() to create tensors we need to train the model.<img src="../image/FaceRecognition/Code1.png" alt="Code" width="600" > But we encounter another warming: “UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. “ We correct it by using numpy.array() as it suggested.<img src="../image/FaceRecognition/Code2.png" alt="Code" width="600" > We find that the way I described above is not efficient and practical in the training. We look throught reference and find that use torchvision and torch dataloader function is an efficient and convenience way to load data from folders. <img src="../image/FaceRecognition/Loaddata.png" alt="Loaddata" width="800" >  And we encounted problem:”TypeError: default_collate: batch must contain tensors, numpy arrays, numbers, dicts or lists;” The problem is caused by the error in the data. We can solve it by add a transform and use the transfrom as a parameter of the function ImageFolder:<img src="../image/FaceRecognition/Transform.png" alt="Loaddata" width="600" > <img src="../image/FaceRecognition/Transform2.png" alt="Loaddata" width="800" > We first use two sequence images as the group, but the training result is really bad. all the test iamges are all classified to the last person. The reason for this is that we define the loss function as below: if the two images are from the same person, the loss should be the distance between them; if the two images are from the different person, the loss should be the negative distance between them. But the result is that all the test images are classified to the last learned person. The reason for that, I think, is that since we choose two sequence images as training dataset, most of the training dataset is of same group. The latter the “Person” image trains, the “better” the model will be. So the middle point of the person will be more closed to the output of the model no matter what the input is. So We use triplet loss to train the model. The triplt means that we regard 3 images as a group. 2 of the images are from the same person and the other is from the other person. We construct these 3-group by concaterate two batch. The first one is 2 images from same person and the other is from the other person.<img src="../image/FaceRecognition/DataConstruce.png" alt="dataconstruce" width="800" >  I will tell the details of Triplt loss and its training later. We want to minimize the distance between same person and maximize the distance between different person. </p>
+<p>We first use the DeepSort model and of course, we use cuda to accerlate the training process. We encounted problem:”Expected all tensors to be on the same device, but found at least two devices” This is because the data and model we use are not at same device, we can solve it by add a DEVICE that represent the device we want to use and appoint all the data and model we use to the device. We can do this by:<img src="../image/FaceRecognition/Device1.png" alt="Device" width="800" >  <img src="../image/FaceRecognition/Device_net.png" alt="Device" width="800" >  <img src="../image/FaceRecognition/Device_tensor.png" alt="Device" width="800" > We define the Euclidean Distance between two 128-dimension vector as the loss function. We take the average value of 128-dimension vector of all the images from the same person as the middle point of the person. </p>
 <p>Reference:<br>[1] S. Chopra, R. Hadsell and Y. LeCun, “Learning a similarity metric discriminatively, with application to face verification,” 2005 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR’05), San Diego, CA, USA, 2005, pp. 539-546 vol. 1, doi: 10.1109&#x2F;CVPR.2005.202.<br>[2] Y. Sun, X. Wang, and X. Tang. Deep learning face representation by joint identification-verification. CoRR, abs&#x2F;1406.4773, 2014.<br>[3] F. Schroff, D. Kalenichenko, and J. Philbin. Facenet: A unified embedding for face recognition and clustering. In Proc. CVPR, 2015.<br>[4] O. M. Parkhi, A. Vedaldi, and A. Zisserman. Deep face recognition. In BMVC, 2015 </p>
 
     </div>
