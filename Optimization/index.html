@@ -26,11 +26,15 @@
 <meta property="og:site_name" content="Jason&#39;s Blog">
 <meta property="og:description" content="Notes and Homework of optimization">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.zhangjs.me/image/Optimization/Setting1.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Optimization/Setting2.png">
+<meta property="og:image" content="http://www.zhangjs.me/image/Optimization/Texexample.png">
 <meta property="article:published_time" content="2024-09-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-25T09:37:18.267Z">
+<meta property="article:modified_time" content="2024-09-25T12:55:30.116Z">
 <meta property="article:author" content="Jiasheng Zhang">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhangjs.me/image/Optimization/Setting1.png">
 
 
 <link rel="canonical" href="http://www.zhangjs.me/Optimization/">
@@ -201,7 +205,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-09-25 00:00:00 / Modified: 17:37:18" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
+      <time title="Created: 2024-09-25 00:00:00 / Modified: 20:55:30" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -223,7 +227,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Additional work:<br><font color=Green>Use LaTex with VS Code in Mac M3</font></p>
+    <div class="post-body" itemprop="articleBody"><p>Additional work:<br><font color=Green>Use LaTex with VS Code in Mac M3</font><br>I want to use LaTex with VS Code on my Mac and there are configuration process.<br>First, we nned to download Texlive. In Mac OS, MacTex is designed by Latex to better fit Mac OS. So I downloaded MacTex. Since if we download it from the official website, it will be slow, so we can use domestic mirror to acclerate download.<br>After we download MacTex, click the Gear in the bottom left<img src="../image/Optimization/Setting1.png" alt="Setting" width="600" > And then click setting and we will get this:<img src="../image/Optimization/Setting2.png" alt="Setting" width="600" > After that, we click<br>Open Setting(json) on the top right and we will get an empty json file, we paste following codes in it:<br><font color=Blue><br>{<br>    &#x2F;&#x2F; “latex.linter.enabled”: false,<br>    “latex-workshop.latex.autoBuild.run”: “never”,<br>    “latex-workshop.showContextMenu”: true,<br>    “latex-workshop.intellisense.package.enabled”: true,<br>    “latex-workshop.message.error.show”: false,<br>    “latex-workshop.message.warning.show”: false,<br>    “latex-workshop.latex.tools”: [<br>        {<br>            “name”: “xelatex”,<br>            “command”: “xelatex”,<br>            “args”: [<br>                “-synctex&#x3D;1”,<br>                “-interaction&#x3D;nonstopmode”,<br>                “-file-line-error”,<br>                “%DOCFILE%”<br>            ]<br>        },<br>        {<br>            “name”: “pdflatex”,<br>            “command”: “pdflatex”,<br>            “args”: [<br>                “-synctex&#x3D;1”,<br>                “-interaction&#x3D;nonstopmode”,<br>                “-file-line-error”,<br>                “%DOCFILE%”<br>            ]<br>        },<br>        {<br>            “name”: “latexmk”,<br>            “command”: “latexmk”,<br>            “args”: [<br>                “-synctex&#x3D;1”,<br>                “-interaction&#x3D;nonstopmode”,<br>                “-file-line-error”,<br>                “-pdf”,<br>                “-outdir&#x3D;%OUTDIR%”,<br>                “%DOCFILE%”<br>            ]<br>        },<br>        {<br>            “name”: “bibtex”,<br>            “command”: “bibtex”,<br>            “args”: [<br>                “%DOCFILE%”<br>            ]<br>        }<br>    ],<br>    “latex-workshop.latex.recipes”: [<br>        {<br>            “name”: “XeLaTeX”,<br>            “tools”: [<br>                “xelatex”<br>            ]<br>        },<br>        {<br>            “name”: “PDFLaTeX”,<br>            “tools”: [<br>                “pdflatex”<br>            ]<br>        },<br>        {<br>            “name”: “BibTeX”,<br>            “tools”: [<br>                “bibtex”<br>            ]<br>        },<br>        {<br>            “name”: “LaTeXmk”,<br>            “tools”: [<br>                “latexmk”<br>            ]<br>        },<br>        {<br>            “name”: “xelatex -&gt; bibtex -&gt; xelatex<em>2”,<br>            “tools”: [<br>                “xelatex”,<br>                “bibtex”,<br>                “xelatex”,<br>                “xelatex”<br>            ]<br>        },<br>        {<br>            “name”: “pdflatex -&gt; bibtex -&gt; pdflatex</em>2”,<br>            “tools”: [<br>                “pdflatex”,<br>                “bibtex”,<br>                “pdflatex”,<br>                “pdflatex”<br>            ]<br>        },<br>    ],<br>    “latex-workshop.latex.clean.fileTypes”: [<br>        “<em>.aux”,<br>        “</em>.bbl”,<br>        “<em>.blg”,<br>        “</em>.idx”,<br>        “<em>.ind”,<br>        “</em>.lof”,<br>        “<em>.lot”,<br>        “</em>.out”,<br>        “<em>.toc”,<br>        “</em>.acn”,<br>        “<em>.acr”,<br>        “</em>.alg”,<br>        “<em>.glg”,<br>        “</em>.glo”,<br>        “<em>.gls”,<br>        “</em>.ist”,<br>        “<em>.fls”,<br>        “</em>.log”,<br>        “*.fdb_latexmk”<br>    ],<br>    “latex-workshop.latex.autoClean.run”: “onFailed”,<br>    “latex-workshop.latex.recipe.default”: “lastUsed”,<br>    “latex-workshop.view.pdf.internal.synctex.keybinding”: “double-click”,<br>    “editor.unicodeHighlight.allowedLocales”: {<br>        “zh-hans”: true,<br>        “zh-hant”: true<br>    },<br>    “[latex]”:<br>    {</p>
+<pre><code>    &quot;editor.defaultFormatter&quot;: &quot;James-Yu.latex-workshop&quot;
+&#125;
+</code></pre>
+<p>}<br></font><br>Then we open our prepared .tex file and click the bottons from left to rigth and we will see the output pdf of out .tex file<img src="../image/Optimization/Texexample.png" alt="Setting" width="600" ></p>
+<p>Reference:<br>[1] 胖虎有话说 Mac系统下VScode+LaTeX配置方案（干货版）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/654720622#:~:text=%E9%80%9A%E8%BF%87%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%89%A9">https://zhuanlan.zhihu.com/p/654720622#:~:text=%E9%80%9A%E8%BF%87%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%89%A9</a><br>[2] Hi7bet Mac-LaTeX-VS Code从门外到入门(持续更新) <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/648578326#:~:text=%E6%88%91%E4%BB%AC%E4%BD%BF%E7%94%A8VS%20C">https://zhuanlan.zhihu.com/p/648578326#:~:text=%E6%88%91%E4%BB%AC%E4%BD%BF%E7%94%A8VS%20C</a></p>
 
     </div>
 
