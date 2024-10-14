@@ -19,32 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.zhangjs.me","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="The learning note of Book &quot;Dive into Deep Learning&quot;">
+    <meta name="description" content="One MOT literature review and two algorithms about MOT，ByteTrack and StrongSORT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How neural network works?">
-<meta property="og:url" content="http://www.zhangjs.me/ann_notes_1/index.html">
+<meta property="og:title" content="Literautre review of MOT">
+<meta property="og:url" content="http://www.zhangjs.me/MOT_LiteratureReivew/index.html">
 <meta property="og:site_name" content="Jason&#39;s Blog">
-<meta property="og:description" content="The learning note of Book &quot;Dive into Deep Learning&quot;">
+<meta property="og:description" content="One MOT literature review and two algorithms about MOT，ByteTrack and StrongSORT">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://www.zhangjs.me/image/ann_notes_1/AnacondaInstallation.png">
-<meta property="og:image" content="http://www.zhangjs.me/image/ann_notes_1/environment_creation.png">
-<meta property="og:image" content="http://www.zhangjs.me/image/ann_notes_1/environment_activation.png">
-<meta property="article:published_time" content="2024-08-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-14T05:48:28.994Z">
+<meta property="article:published_time" content="2024-10-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-14T05:59:18.676Z">
 <meta property="article:author" content="Jiasheng Zhang">
 <meta property="article:tag" content="ComputerScience">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.zhangjs.me/image/ann_notes_1/AnacondaInstallation.png">
 
 
-<link rel="canonical" href="http://www.zhangjs.me/ann_notes_1/">
+<link rel="canonical" href="http://www.zhangjs.me/MOT_LiteratureReivew/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://www.zhangjs.me/ann_notes_1/","path":"ann_notes_1/","title":"How neural network works?"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://www.zhangjs.me/MOT_LiteratureReivew/","path":"MOT_LiteratureReivew/","title":"Literautre review of MOT"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>How neural network works? | Jason's Blog</title>
+<title>Literautre review of MOT | Jason's Blog</title>
   
 
 
@@ -117,7 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Prerequisites"><span class="nav-number">1.</span> <span class="nav-text">1 Prerequisites</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation-of-environment"><span class="nav-number">1.1.</span> <span class="nav-text">Installation of environment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MOT-metrics"><span class="nav-number">1.</span> <span class="nav-text">1.MOT metrics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MOTP"><span class="nav-number">1.1.</span> <span class="nav-text">MOTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MOTA"><span class="nav-number">1.2.</span> <span class="nav-text">MOTA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDF1"><span class="nav-number">1.3.</span> <span class="nav-text">IDF1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOTA"><span class="nav-number">1.4.</span> <span class="nav-text">HOTA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocA"><span class="nav-number">1.5.</span> <span class="nav-text">LocA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AssA"><span class="nav-number">1.6.</span> <span class="nav-text">AssA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DetA"><span class="nav-number">1.7.</span> <span class="nav-text">DetA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DetRe"><span class="nav-number">1.8.</span> <span class="nav-text">DetRe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DetPr"><span class="nav-number">1.9.</span> <span class="nav-text">DetPr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AssRe"><span class="nav-number">1.10.</span> <span class="nav-text">AssRe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MOTSA"><span class="nav-number">1.11.</span> <span class="nav-text">MOTSA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Literature-review"><span class="nav-number">2.</span> <span class="nav-text">2.Literature review</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-ByteTrack"><span class="nav-number">3.</span> <span class="nav-text">3.ByteTrack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-StrongSORT"><span class="nav-number">4.</span> <span class="nav-text">4.StrongSORT</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://www.zhangjs.me/ann_notes_1/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhangjs.me/MOT_LiteratureReivew/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -189,12 +185,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="How neural network works? | Jason's Blog">
-      <meta itemprop="description" content="The learning note of Book "Dive into Deep Learning"">
+      <meta itemprop="name" content="Literautre review of MOT | Jason's Blog">
+      <meta itemprop="description" content="One MOT literature review and two algorithms about MOT，ByteTrack and StrongSORT">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          How neural network works?
+          Literautre review of MOT
         </h1>
 
         <div class="post-meta-container">
@@ -205,14 +201,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
+      <time title="Created: 2024-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-12T00:00:00+08:00">2024-10-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-10-14 13:48:28" itemprop="dateModified" datetime="2024-10-14T13:48:28+08:00">2024-10-14</time>
+      <time title="Modified: 2024-10-14 13:59:18" itemprop="dateModified" datetime="2024-10-14T13:59:18+08:00">2024-10-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,16 +223,15 @@
   
 </div>
 
-            <div class="post-description">The learning note of Book "Dive into Deep Learning"</div>
+            <div class="post-description">One MOT literature review and two algorithms about MOT，ByteTrack and StrongSORT</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Reference: Learn the basic concept about Neural Network based on “Dive into Deep Learning”<br>参考书：以《Python神经网络编程》、《Dive into Deep Learning》为资料，学习基本的人工神经网络基础知识。</p>
-<h1 id="1-Prerequisites"><a href="#1-Prerequisites" class="headerlink" title="1 Prerequisites"></a>1 Prerequisites</h1><h2 id="Installation-of-environment"><a href="#Installation-of-environment" class="headerlink" title="Installation of environment"></a>Installation of environment</h2><p>1 Installation of Anaconda<br><img src="../image/ann_notes_1/AnacondaInstallation.png" alt="e_growth" width="500" /><br>2 Create an environment and activate environment<br><img src="../image/ann_notes_1/environment_creation.png" alt="e_growth" width="500" /><br><img src="../image/ann_notes_1/environment_activation.png" alt="e_growth" width="500" /></p>
-<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1>
+    <div class="post-body" itemprop="articleBody"><p>&emsp;&emsp;Multiple Object Tracking is the process of tracking objects of our interest</p>
+<h1 id="1-MOT-metrics"><a href="#1-MOT-metrics" class="headerlink" title="1.MOT metrics"></a>1.MOT metrics</h1><h2 id="MOTP"><a href="#MOTP" class="headerlink" title="MOTP"></a>MOTP</h2><h2 id="MOTA"><a href="#MOTA" class="headerlink" title="MOTA"></a>MOTA</h2><h2 id="IDF1"><a href="#IDF1" class="headerlink" title="IDF1"></a>IDF1</h2><h2 id="HOTA"><a href="#HOTA" class="headerlink" title="HOTA"></a>HOTA</h2><h2 id="LocA"><a href="#LocA" class="headerlink" title="LocA"></a>LocA</h2><h2 id="AssA"><a href="#AssA" class="headerlink" title="AssA"></a>AssA</h2><h2 id="DetA"><a href="#DetA" class="headerlink" title="DetA"></a>DetA</h2><h2 id="DetRe"><a href="#DetRe" class="headerlink" title="DetRe"></a>DetRe</h2><h2 id="DetPr"><a href="#DetPr" class="headerlink" title="DetPr"></a>DetPr</h2><h2 id="AssRe"><a href="#AssRe" class="headerlink" title="AssRe"></a>AssRe</h2><h2 id="MOTSA"><a href="#MOTSA" class="headerlink" title="MOTSA"></a>MOTSA</h2><h1 id="2-Literature-review"><a href="#2-Literature-review" class="headerlink" title="2.Literature review"></a>2.Literature review</h1><h1 id="3-ByteTrack"><a href="#3-ByteTrack" class="headerlink" title="3.ByteTrack"></a>3.ByteTrack</h1><h1 id="4-StrongSORT"><a href="#4-StrongSORT" class="headerlink" title="4.StrongSORT"></a>4.StrongSORT</h1>
     </div>
 
     
@@ -252,14 +247,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/mhw_great_sword/" rel="prev" title="怪物猎人世界大剑总结">
-                  <i class="fa fa-angle-left"></i> 怪物猎人世界大剑总结
+                <a href="/installation_ubuntu_M3/" rel="prev" title="InstallationUbuntu">
+                  <i class="fa fa-angle-left"></i> InstallationUbuntu
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Deepsort/" rel="next" title="DeepSORT">
-                  DeepSORT <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
